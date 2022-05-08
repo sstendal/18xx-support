@@ -14,7 +14,6 @@ const store = configureStore({
     reducer,
     preloadedState: savedState
 })
-export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 export const useAppDispatch = () => useDispatch<AppDispatch>()
 

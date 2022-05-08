@@ -1,5 +1,6 @@
 import {useDispatch as reactUseDispatch, useSelector as reactUseSelector} from 'react-redux'
-import {AppDispatch, RootState} from './store'
+import {AppDispatch} from './store'
+import {RootState} from './types'
 
 type RootStateSelector = <Selected>(selector: (state: RootState) => Selected, equalityFn?: (left: Selected, right: Selected) => boolean) => Selected
 
