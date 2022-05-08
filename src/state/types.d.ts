@@ -1,3 +1,12 @@
+export interface RootState {
+    accounts: Account[],
+    drag: DragData,
+    transactions: Transaction[],
+    multiplier: number,
+    baseValue: number,
+    baseValueFraction: number,
+    config: boolean
+}
 
 export interface Transaction {
     from: number,
