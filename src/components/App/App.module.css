@@ -1,0 +1,33 @@
+.body {
+  display: none;
+  min-width: 1280px;
+  position: relative;
+  height: 100vh;
+}
+
+.sizeWarning {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #104547;
+  color: white;
+  text-align: center;
+  font-size: large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1280px) {
+  .sizeWarning {
+    display: none;
+  }
+
+  .body {
+    display: block;
+  }
+
+}

@@ -1,0 +1,60 @@
+.logButton {
+    border: 2px solid white;
+    border-radius: 2rem;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 2.4rem;
+    cursor: pointer;
+    background-color: #104547;
+    filter: drop-shadow(0 0 10px #0c1719);
+}
+
+.logEntry {
+    display: flex;
+}
+
+.time {
+    width: 8rem;
+}
+
+.text {
+    width: 20rem;
+}
+
+.value {
+    
+}
+
+.closeButton {
+    border: 2px solid white;
+    border-radius: 1rem;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 1.8rem;
+    cursor: pointer;
+    background-color: #104547;
+}
+
+.buttonRow {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.list {
+    max-height: 60vh;
+    overflow-y: auto;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    margin: 0 -2rem;
+    padding: 0 2rem;
+    min-height: 8rem;
+}
+
+.emptyText {
+    font-size: 2.6rem;
+    color: lightgrey;
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+}

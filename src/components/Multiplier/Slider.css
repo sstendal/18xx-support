@@ -1,0 +1,34 @@
+.slider__body {
+    border: 0.2rem solid white;
+    border-radius: 1rem;
+    width: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0;
+    justify-content: space-evenly;
+    background-color: #104547;
+    filter: drop-shadow(0 0 10px #0c1719);
+}
+
+.slider__body svg {
+    fill: white;
+    transition: all 0.2s ease-in-out;
+}
+
+.slider__body svg:hover {
+    cursor: pointer;
+}
+
+.slider__down {
+    transform: rotate(180deg);
+}
+
+.slider__down:hover {
+    transform: rotate(180deg) scale(1.1);
+}
+
+.slider__up:hover {
+    transform: scale(1.1);
+}
+

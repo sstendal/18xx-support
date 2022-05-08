@@ -1,0 +1,76 @@
+.multiplier {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 3rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    gap: 2rem;
+}
+
+.multiplier__selector {
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background-color: #d0b174;
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    color: black;
+    font-weight: 500;
+    filter: drop-shadow(0 0 10px #0c1719);
+    border: 8px solid #eac67a;
+}
+
+.multiplier__selector:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.multiplier__selector--selected {
+    transform: scale(1.04);
+    border-color: white;
+    background-color: #d3d3d3;
+}
+
+.multiplier__selector:hover {
+    transform: scale(1.04);
+    border-color: white;
+}
+
+.multiplier__number {
+    font-size: 3.6rem;
+}
+
+.multiplier__number--small {
+    font-size: 3.2rem;
+}
+
+.multiplier__number--very-small {
+    font-size: 2.4rem;
+}
+
+@media screen and (min-width: 1600px) {
+
+    .multiplier__number {
+        font-size: 4.8rem;
+    }
+
+    .multiplier__number--small {
+        font-size: 4.2rem;
+    }
+
+    .multiplier__number--very-small {
+        font-size: 3.2rem;
+    }
+
+    .multiplier__selector {
+        border-width: 12px;
+    }
+}
+
+

@@ -1,0 +1,17 @@
+.body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    flex-basis: 0;
+    margin: 4rem 1rem 0 1rem;
+    border-radius: 1.8rem;
+    border: 5px dashed white;
+    font-size: 2.4rem;
+    cursor: pointer;
+}
+
+.body:hover .text {
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.1);
+}

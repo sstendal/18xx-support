@@ -1,0 +1,49 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Proxima Nova Soft W03 Bold", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-size: 1.6rem;
+}
+
+button, input {
+  font-family: "Proxima Nova Soft W03 Bold", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.ReactModal__Content {
+  background-color: #d3bba2;
+  max-height: 80%;
+}
+
+.ReactModal__Content > h2 {
+  background-color: #5B4B49;
+  color: white;
+  margin-left: -2rem;
+  margin-right: -2rem;
+  margin-top: -2rem;
+  padding: 2rem;
+}
+
+.ReactModal__Content > h3 {
+  font-weight: 700;
+  margin-top: 4rem;
+}
+
+.ReactModal__Content > p {
+  max-width: 80rem;
+}
