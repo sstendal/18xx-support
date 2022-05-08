@@ -15,6 +15,8 @@ export default function Account({id}: {id: number}) {
     const account = useSelector(state => state.accounts.find(account => account.id === id))
     const drag = useSelector(state => state.drag)
 
+    const isCompany = account.type === 'company'
+
     function onDelete() {
         if (account.balance !== 0) {
             alert('Can not delete accounts with non-zero balance.')
@@ -29,13 +31,21 @@ export default function Account({id}: {id: number}) {
         <DeleteIcon className={styles.deleteIcon} onClick={onDelete}/>
     )
 
+    const buttons = isCompany && (
+        <div className={classNames(styles.footer, styles.bottomBorderRadius)}>
+            <div className={styles.footerButton}><span>Bank payment</span></div>
+            <div className={styles.footerButton}><span>Share Payout</span></div>
+        </div>
+    )
+
     return (
         <div className={styles.body}>
             <AccountName id={id}/>
             {deleteElement}
-            <div data-id={account.id} className={classNames(styles.balance, selected && styles.balanceSelected)}>
+            <div data-id={account.id} className={classNames(styles.balance, selected && styles.balanceSelected, !isCompany && styles.bottomBorderRadius)}>
                 <AccountValue id={account.id}/>
             </div>
+            {buttons}
         </div>
     )
 }

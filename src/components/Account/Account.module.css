@@ -44,11 +44,41 @@
     color: black;
     font-size: 2.4rem;
     padding: 0.5rem 0;
-    border-bottom-left-radius: 1.8rem;
-    border-bottom-right-radius: 1.8rem;
     width: 100%;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 0.8rem;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #5B4B49;
+}
+
+.footerButton {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    box-sizing: border-box;
+    border-right: 1px solid #bcbcbc;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+.footerButton:last-child {
+    border-right: none;
+}
+
+.footerButton:hover {
+    text-decoration: underline;
+    transition: all 0.2s ease-in-out;
+}
+
+.bottomBorderRadius {
+    border-bottom-left-radius: 1.8rem;
+    border-bottom-right-radius: 1.8rem;
 }
 
 @media (min-height: 730px) {
@@ -97,6 +127,9 @@ input.editingFontSize {
 @media (min-height: 730px) {
     input.editingFontSize {
         font-size: 3.6rem;
+    }
+    .footer {
+        font-size: 1rem;
     }
 }
 
