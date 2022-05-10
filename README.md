@@ -66,4 +66,4 @@ This project is licensed under the GPLv3 license - see the [LICENSE](LICENSE) fi
 
 ## Acknowledgments
   
-Thanks to David Damarell for suggesting interesting features. 
+Thanks to David Damerell for suggesting interesting features. 
