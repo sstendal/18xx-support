@@ -84,7 +84,7 @@ export default function Help() {
                     </p>
                     <h3>About</h3>
                     <p>
-                        https://18xx-support.netlify.app is created an maintained by Sigurd Stendal. Bugs and problems
+                        https://18xx-support.stendal.io is created an maintained by Sigurd Stendal. Bugs and problems
                         can be reported by sending an email to 18xx[at]stendal.io.
                     </p>
                 </div>
