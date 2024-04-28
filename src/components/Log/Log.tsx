@@ -33,7 +33,7 @@ export default function Log() {
     let logElements = transactions.map((transaction, index) => (
         <div key={index} className={styles.logEntry}>
             <div className={styles.time}>{transaction.time}</div>
-            <div className={styles.text}>From {accountName(transaction.from)} to {accountName[transaction.to]}</div>
+            <div className={styles.text}>From {accountName(transaction.from)} to {accountName(transaction.to)}</div>
             <div className={styles.value}>${transaction.value}</div>
         </div>
     ))
