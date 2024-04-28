@@ -4,7 +4,6 @@ import styles from './Log.module.css'
 import {useDispatch} from 'react-redux'
 import {resetLog} from '../../state/actions'
 import {useSelector} from '../../state/useSelector'
-import {Transaction} from '../../state/types'
 
 export default function Log() {
 
