@@ -4,6 +4,7 @@ import styles from './Log.module.css'
 import {useDispatch} from 'react-redux'
 import {resetLog} from '../../state/actions'
 import {useSelector} from '../../state/useSelector'
+import {Transaction} from '../../state/types'
 
 export default function Log() {
 
@@ -11,6 +12,7 @@ export default function Log() {
     const [open, setOpen] = useState(false)
 
     const transactions = useSelector(state => [...state.transactions])
+    const accounts = useSelector(state => state.accounts)
 
     function toggleModal() {
         setOpen(!open)
@@ -24,10 +26,15 @@ export default function Log() {
     }
 
     transactions.reverse()
+
+    function accountName(accountIndex: number) {
+        return accounts[accountIndex]?.name || ('#' + accountIndex)
+    }
+
     let logElements = transactions.map((transaction, index) => (
         <div key={index} className={styles.logEntry}>
             <div className={styles.time}>{transaction.time}</div>
-            <div className={styles.text}>From {transaction.from} to {transaction.to}</div>
+            <div className={styles.text}>From {accountName(transaction.from)} to {accountName[transaction.to]}</div>
             <div className={styles.value}>${transaction.value}</div>
         </div>
     ))
