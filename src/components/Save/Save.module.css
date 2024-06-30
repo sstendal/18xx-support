@@ -1,0 +1,147 @@
+
+.buttonRow {
+    margin: 2rem 0;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.saveButton {
+    border: 2px solid white;
+    border-radius: 2rem;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 2.4rem;
+    cursor: pointer;
+    background-color: #104547;
+    margin-left: 2rem;
+    filter: drop-shadow(0 0 10px #0c1719);
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(16, 69, 71);
+    border: 0.2rem solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.closeButton:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.closeIcon {
+    color: white;
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.frame {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    width: 40rem;
+    background-color: #104547;
+    border: 4px solid white;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 2;
+    padding: 2rem;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.input {
+    background-color: #2F4F4F;
+    color: white;
+    border: 0.1rem solid #4A6D6D;
+    border-radius: 0.4rem;
+    padding: 0.8rem 1.2rem;
+    font-size: 1.6rem;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.button {
+    background-color: #4A6D6D;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.8rem 1.6rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin-left: 0.8rem;
+    transition: background-color 0.3s;
+}
+
+.restore {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.restore > div {
+    width: 100%;
+}
+
+.restore :global(.react-select__control) {
+    background-color: #2F4F4F;
+    border: 0.2rem solid #4A6D6D;
+    color: white;
+    box-shadow: none;
+}
+
+.restore :global(.react-select__control:hover) {
+    border-color: white;
+}
+
+.restore :global(.react-select__placeholder) {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.restore :global(.react-select__option) {
+    background-color: #2F4F4F;
+    color: white;
+}
+
+.restore :global(.react-select__option--is-selected) {
+    background-color: #4A6D6D;
+}
+
+.restore :global(.react-select__option:hover) {
+    background-color: #3A5F5F;
+}
+
+.restore :global(.react-select__single-value) {
+    color: white;
+}
+
+.restore :global(.react-select__menu) {
+    background-color: #2F4F4F;
+}
+
+.explanation {
+    color: rgba(255, 255, 255, 0.5);
+}

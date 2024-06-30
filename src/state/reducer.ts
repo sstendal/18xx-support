@@ -17,7 +17,7 @@ import {
     startConfig,
     startDrag,
     stopConfig,
-    stopDrag
+    stopDrag, startSave, stopSave
 } from './actions'
 import {Account, DragData, Transaction} from './types'
 
@@ -89,6 +89,11 @@ const config = createReducer(false, {
     [stopConfig as any]: (state: boolean, action) => false
 })
 
+const save = createReducer(false, {
+    [startSave as any]: (state: boolean, action) => true,
+    [stopSave as any]: (state: boolean, action) => false
+})
+
 const reducer = {
     accounts,
     drag,
@@ -96,7 +101,8 @@ const reducer = {
     multiplier,
     baseValue,
     baseValueFraction,
-    config
+    config,
+    save
 }
 
 export default reducer

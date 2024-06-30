@@ -8,7 +8,8 @@ export interface RootState extends SavedState {
     multiplier: number,
     baseValue: number,
     baseValueFraction: number,
-    config: boolean
+    config: boolean,
+    save: boolean
 }
 
 export interface Transaction {

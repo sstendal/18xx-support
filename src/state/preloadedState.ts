@@ -97,7 +97,9 @@ const preloadedState: RootState = {
 
     baseValueFraction: 1,
 
-    config: false
+    config: false,
+
+    save: false
 
 }
 

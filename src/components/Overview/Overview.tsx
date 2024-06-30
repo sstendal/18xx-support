@@ -11,6 +11,7 @@ import Help from '../Help/Help'
 import * as selectors from '../../state/selectors'
 import NewAccount from '../NewAccount/NewAccount'
 import {useDispatch, useSelector} from '../../state/useSelector'
+import Save from '../Save/Save'
 
 
 function findElementUnderCursor(x, y) {
@@ -117,6 +118,7 @@ export default function Overview() {
                        drag={drag}
             />
             <div className="overview__buttonRow">
+                <Save/>
                 <Log/>
                 <Edit/>
                 <Help/>

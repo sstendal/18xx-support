@@ -26,3 +26,5 @@ export const setBaseValueFraction = createAction('baseValueFraction/set')
 export const startConfig = createAction('config/start')
 export const stopConfig = createAction('config/stop')
 
+export const startSave = createAction('save/start')
+export const stopSave = createAction('save/stop')
