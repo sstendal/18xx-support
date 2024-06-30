@@ -92,8 +92,8 @@
     padding: 0.8rem 1.6rem;
     font-size: 1.6rem;
     cursor: pointer;
-    margin-left: 0.8rem;
     transition: background-color 0.3s;
+    max-width: 20rem;
 }
 
 .restore {

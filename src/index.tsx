@@ -7,7 +7,14 @@ import store from './state/store'
 import {listenToKeyEvents} from './services/thunks'
 import Modal from 'react-modal'
 import * as Sentry from "@sentry/react";
-import { BrowserTracing } from "@sentry/tracing";
+import { BrowserTracing } from "@sentry/tracing"
+import netlifyIdentity from 'netlify-identity-widget'
+import {SessionProvider} from './components/Session/Session'
+
+// Initialize Netlify Identity
+netlifyIdentity.init({
+    APIUrl: process.env.REACT_APP_NETLIFY_IDENTITY_URL, // Will be undefined i production, which is fine
+})
 
 // Overriding react-modal styles
 Modal.setAppElement('#root')
@@ -49,7 +56,9 @@ Sentry.init({
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <SessionProvider>
+            <App/>
+        </SessionProvider>
     </Provider>,
     document.getElementById('root')
 )
