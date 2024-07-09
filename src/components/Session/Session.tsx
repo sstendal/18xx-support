@@ -1,12 +1,20 @@
 
 import React, {createContext, useContext, useEffect, useState} from 'react'
-import netlifyIdentity from 'netlify-identity-widget'
+import netlifyIdentity, {User} from 'netlify-identity-widget'
 
-const SessionContext = createContext(null);
+type SessionContextType = {
+    user: User
+    isLoading: boolean
+    login: () => void
+    signup: () => void
+    logout: () => void
+}
+
+const SessionContext = createContext<SessionContextType>(null);
 
 // Create a provider component
 export const SessionProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

@@ -50,7 +50,7 @@ export default function Save() {
                         <p>
                             Save or restore your game for backup or to play on another device.
                         </p>
-                        {user &&
+                        {!user &&
                             <>
                                 <div className={styles.section}>
                                     <p>
@@ -73,6 +73,9 @@ export default function Save() {
                                         }}
                                     />
                                 </div>
+                                <p>
+                                    You are logged in as {user.user_metadata?.full_name || user.email}
+                                </p>
                                 <div className={styles.section}>
                                     <button className={styles.button} onClick={logout}>Log out</button>
                                 </div>
@@ -81,7 +84,7 @@ export default function Save() {
                         {!user && (
                             <div className={styles.section}>
                                 <p>
-                                    You must be logged in to save your game in the cloud.
+                                You must be logged in to save your game in the cloud.
                                 </p>
                                 <button className={styles.button} onClick={login}>Log in</button>
                             </div>
