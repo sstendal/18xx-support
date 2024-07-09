@@ -50,7 +50,7 @@ export default function Save() {
                         <p>
                             Save or restore your game for backup or to play on another device.
                         </p>
-                        {!user &&
+                        {user &&
                             <>
                                 <div className={styles.section}>
                                     <p>
