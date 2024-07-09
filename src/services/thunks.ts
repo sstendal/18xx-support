@@ -1,7 +1,7 @@
 import {accountAdjust, addTransaction, setBaseValue, setMultiplier} from '../state/actions'
 import moment from 'moment'
 import typedNumber from './typedNumber'
-import {Account, SaveGame, Transaction} from '../state/types'
+import {SaveGame} from '../state/types'
 
 const DIGITS = ['0','1','2','3','4','5','6','7','8','9']
 
