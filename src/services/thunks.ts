@@ -1,6 +1,7 @@
 import {accountAdjust, addTransaction, setBaseValue, setMultiplier} from '../state/actions'
 import moment from 'moment'
 import typedNumber from './typedNumber'
+import {Account, SaveGame, Transaction} from '../state/types'
 
 const DIGITS = ['0','1','2','3','4','5','6','7','8','9']
 
@@ -16,8 +17,6 @@ export function listenToKeyEvents() {
 
 
         window.addEventListener('keydown', function (e) {
-            console.log('Keydown', e.key, e.shiftKey)
-
             // Arrow keys change the selected multiplier
             if (e.key === 'ArrowRight') {
                 const currentMultiplier = getState().multiplier
@@ -44,7 +43,26 @@ export function listenToKeyEvents() {
             }
 
         }, true)
-
-
     }
 }
+
+export function saveToCloud(name: string) {
+    return (dispatch, getState) => {
+        console.log('Saving to the cloud', name)
+        const state = getState()
+        let saveGame: SaveGame = {
+            gameName: name,
+            accounts: state.accounts,
+            transactions: state.transactions,
+        }
+        fetch('/.netlify/functions/save', {
+            method: 'POST',
+            body: JSON.stringify(saveGame)
+        }).then(response => {
+            console.log('Saved')
+        }).catch(e => {
+            console.error('Failed to save', e)
+        })
+    }
+}
+

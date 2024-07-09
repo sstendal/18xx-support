@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import styles from './Save.module.css';
+import {useDispatch} from '../../state/useSelector'
 
 const NewGameInput = ({ onSave }) => {
     const [gameName, setGameName] = useState('');
+    const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log('gameName', gameName)
         if (gameName.trim()) {
-            onSave(gameName.trim());
+            dispatch(onSave(gameName.trim()))
             setGameName('');
         }
     };
@@ -21,7 +24,7 @@ const NewGameInput = ({ onSave }) => {
                 placeholder="New game name"
                 className={styles.input}
             />
-            <button type="submit" className={styles.button}>
+            <button type="submit" className={styles.button} onClick={handleSubmit}>
                 Save
             </button>
         </form>

@@ -32,3 +32,9 @@ export interface DragData {
 }
 
 export type AccountType = 'bank' | 'player' | 'company'
+
+export type SaveGame = {
+    gameName: string,
+    accounts: Account[],
+    transactions: Transaction[]
+}
