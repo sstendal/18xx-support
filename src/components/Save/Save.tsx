@@ -10,7 +10,7 @@ import netlifyIdentity from 'netlify-identity-widget'
 
 export default function Save() {
 
-    const {user, isLoading, login, signup, logout} = useSession()
+    const {user, login, logout} = useSession()
     const save = useSelector(state => state.save)
     const dispatch = useDispatch()
 
