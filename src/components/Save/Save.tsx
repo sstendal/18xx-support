@@ -37,13 +37,6 @@ export default function Save() {
     }, [save, dispatch])
 
 
-    const loginDialog = save && !user && (
-        <div className={styles.frame}>
-
-        </div>
-
-    )
-
     return (
         <>
             <button className={styles.saveButton} onClick={toggle}>Save</button>
