@@ -12,7 +12,7 @@ export default function useRepeatClick(pressed: boolean, callback: () => {}) {
 
     const counter = useRef(0)
     const interval = useRef(INITIAL_INTERVAL)
-    const [intervalId, setIntervalId] = useState<NodeJS.Timer>(null)
+    const [intervalId, setIntervalId] = useState<NodeJS.Timeout>(null)
     const [hover, setHover] = useState(false)
 
     function onMouseLeave(e) {

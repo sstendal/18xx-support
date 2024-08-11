@@ -1,7 +1,10 @@
-export interface RootState {
+export interface SavedState {
     accounts: Account[],
+    transactions: Transaction[]
+}
+
+export interface RootState extends SavedState {
     drag: DragData,
-    transactions: Transaction[],
     multiplier: number,
     baseValue: number,
     baseValueFraction: number,

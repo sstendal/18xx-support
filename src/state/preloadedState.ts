@@ -1,7 +1,7 @@
-import {RootState} from './types'
+import {RootState, SavedState} from './types'
 
 const preloadedState: RootState = {
-    
+
     accounts: [
         {
             id: 0,
@@ -101,4 +101,11 @@ const preloadedState: RootState = {
 
 }
 
-export default preloadedState
+const extendSavedState = (savedState: SavedState = {} as SavedState): RootState => {
+    return {
+        ...preloadedState,
+        ...savedState
+    }
+}
+
+export default extendSavedState

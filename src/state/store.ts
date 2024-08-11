@@ -1,18 +1,15 @@
 import {configureStore} from '@reduxjs/toolkit'
 import reducer from './reducer'
-import preloadedState from './preloadedState'
+import extendSavedState from './preloadedState'
 import {loadState, saveState} from './localstorage'
 import throttle from 'lodash/throttle'
 import {useDispatch} from 'react-redux'
 
-let savedState = loadState()
-if(!savedState) {
-    savedState = preloadedState
-}
+let preloadedState = extendSavedState(loadState())
 
 const store = configureStore({
     reducer,
-    preloadedState: savedState
+    preloadedState
 })
 export type AppDispatch = typeof store.dispatch
 export const useAppDispatch = () => useDispatch<AppDispatch>()
