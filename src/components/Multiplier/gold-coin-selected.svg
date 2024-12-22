@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+    <!-- Background shadow/glow -->
+    <defs>
+        <radialGradient id="coinGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="75%" stop-color="#E0E0E0" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#E0E0E0" stop-opacity="0.6"/>
+        </radialGradient>
+
+        <linearGradient id="coinGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="25%" stop-color="#F5F5F5"/>
+            <stop offset="50%" stop-color="#E0E0E0"/>
+            <stop offset="75%" stop-color="#F5F5F5"/>
+            <stop offset="100%" stop-color="#FFFFFF"/>
+        </linearGradient>
+
+        <radialGradient id="highlight" cx="25%" cy="25%" r="50%">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+        </radialGradient>
+
+        <pattern id="lines" patternUnits="userSpaceOnUse" width="8" height="100">
+            <line x1="0" y1="0" x2="0" y2="100" stroke="#C0C0C0" stroke-width="2" opacity="0.3"/>
+        </pattern>
+    </defs>
+
+    <!-- Main coin body -->
+    <circle cx="200" cy="200" r="180" fill="url(#coinGradient)" />
+
+    <!-- Vertical lines texture -->
+    <circle cx="200" cy="200" r="150" fill="url(#lines)" />
+
+    <!-- Inner ring -->
+    <circle cx="200" cy="200" r="150" fill="none" stroke="#C0C0C0" stroke-width="4"/>
+
+    <!-- Outer ring -->
+    <circle cx="200" cy="200" r="180" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+
+    <!-- Highlight -->
+    <circle cx="200" cy="200" r="180" fill="url(#highlight)" />
+</svg>

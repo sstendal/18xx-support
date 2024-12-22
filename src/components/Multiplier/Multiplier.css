@@ -10,8 +10,6 @@
 .multiplier__selector {
     position: relative;
     box-sizing: border-box;
-    border-radius: 50%;
-    background-color: #d0b174;
     flex-grow: 1;
     flex-basis: 0;
     display: flex;
@@ -22,7 +20,9 @@
     color: black;
     font-weight: 500;
     filter: drop-shadow(0 0 10px #0c1719);
-    border: 8px solid #eac67a;
+    background-image: url('./gold-coin.svg');
+    background-size: cover;
+    background-position: center;
 }
 
 .multiplier__selector:before {
@@ -33,13 +33,11 @@
 
 .multiplier__selector--selected {
     transform: scale(1.04);
-    border-color: white;
-    background-color: #d3d3d3;
+    background-image: url('./gold-coin-selected.svg');
 }
 
 .multiplier__selector:hover {
     transform: scale(1.04);
-    border-color: white;
 }
 
 .multiplier__number {
