@@ -1,8 +1,15 @@
 import React from 'react'
+import uuid from 'uuid-random'
 import styles from './App.module.css'
 import Overview from '../Overview/Overview'
+import {usePing} from '../../services/usePing'
+
+const sessionId = uuid()
 
 export default function App() {
+
+    usePing(sessionId)
+
     return (
         <>
             <div className={styles.body}>
