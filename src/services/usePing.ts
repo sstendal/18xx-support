@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import {useCallback, useEffect, useRef } from 'react'
 
 const PING_INTERVAL = 30 * 60 * 1000 // 30 minutes in milliseconds
 const REQUEST_TIMEOUT = 5000
@@ -6,9 +6,9 @@ const REQUEST_TIMEOUT = 5000
 export const usePing = (sessionId: string) => {
     const timeoutRef = useRef<number>()
 
-    const sendPing = async () => {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
+    const sendPing = useCallback(() => async () => {
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT)
 
         try {
             await fetch('/.netlify/functions/ping', {
@@ -20,17 +20,18 @@ export const usePing = (sessionId: string) => {
                     sessionId
                 }),
                 signal: controller.signal
-            });
+            })
         } catch (error) {
             // Silently ignore any errors
         } finally {
-            clearTimeout(timeoutId);
+            clearTimeout(timeoutId)
             // Schedule next ping regardless of success/failure
             if (timeoutRef.current !== undefined) {
-                timeoutRef.current = window.setTimeout(sendPing, PING_INTERVAL);
+                timeoutRef.current = window.setTimeout(sendPing, PING_INTERVAL)
             }
         }
-    };
+    }, [sessionId])
+
     useEffect(() => {
         // Send initial ping
         sendPing()
@@ -42,5 +43,5 @@ export const usePing = (sessionId: string) => {
                 timeoutRef.current = undefined
             }
         }
-    }, []) // Empty dependency array - only run on mount
+    }, [sendPing])
 }
