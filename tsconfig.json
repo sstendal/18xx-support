@@ -11,10 +11,14 @@
     "downlevelIteration": true,
     "jsx": "react",
     "baseUrl": ".",
+
     "types": [
       "jest",
       "node"
-    ]
+    ],
+
+    "sourceMap": true,
+    "sourceRoot": "/src"
   },
   "include": [
     "src/**/*"

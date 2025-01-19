@@ -5,6 +5,7 @@
   "dependencies": {
     "@netlify/functions": "^3.0.0",
     "@reduxjs/toolkit": "^1.9.7",
+    "@sentry/cli": "^2.40.0",
     "@sentry/react": "^8.50.0",
     "@sentry/tracing": "^7.120.3",
     "@types/react": "^17.0.38",
@@ -23,9 +24,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run sentry:sourcemaps",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org stendalio --project 18xx ./build && sentry-cli sourcemaps upload --org stendalio --project 18xx ./build"
   },
   "eslintConfig": {
     "extends": "react-app"
