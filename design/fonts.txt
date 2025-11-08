@@ -1,0 +1,12 @@
+Example fonts:
+
+h1, h2, .label {
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.value, .amount {
+  font-family: 'Old Standard TT', serif;
+  font-weight: 400;
+}

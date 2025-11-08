@@ -1,30 +1,27 @@
-.dragimage {
+.payout-preview-dragimage {
     background-color: #5B8C5A;
     border: 3px solid darkgreen;
     color: white;
-    position: absolute;
+    position: fixed;
     text-align: center;
     line-height: 8rem;
     font-size: 3.8rem;
     width: 20rem;
     height: 8rem;
     box-shadow: 5px 10px 5px 5px rgba(0, 0, 0, 0.3);
+    z-index: 200;
+    pointer-events: none;
+    /* Position with upper-left corner at center of account box */
+    transform: translate(0, 0);
 }
 
-.dragimage::before {
+.payout-preview-dragimage::before {
     display: block;
     content: "";
-    position:absolute;
+    position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     border: 3px solid #e3e3e3;
-
-}
-
-.dragimage--share {
-    background-color: #C4A381;
-    border: 3px solid #5B4B49;
-    color: black;
 }

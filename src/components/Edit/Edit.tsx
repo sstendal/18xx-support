@@ -3,6 +3,8 @@ import styles from './Edit.module.css'
 import {useDispatch} from 'react-redux'
 import {startConfig, stopConfig} from '../../state/actions'
 import {useSelector} from '../../state/useSelector'
+import Button from '../Button/Button'
+import classNames from '*.css'
 
 export default function Edit() {
 
@@ -19,18 +21,18 @@ export default function Edit() {
 
     const done = config && (
         <div className={styles.done}>
-            <h2>Edit setup</h2>
+            <h2 className={styles.header}>Edit setup</h2>
             <p>
                 Add or remove players and companies and adjust balance.
             </p>
-            <button className={styles.configButton} onClick={toggle}>Done</button>
+            <Button className={styles.configButton} onClick={toggle}>Done</Button>
         </div>
 
     )
 
     return (
         <>
-            <button className={styles.configButton} onClick={toggle}>Edit</button>
+            <Button className={styles.configButton} onClick={toggle}>Edit</Button>
             {done}
         </>
     )

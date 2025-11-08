@@ -8,7 +8,14 @@ export interface RootState extends SavedState {
     multiplier: number,
     baseValue: number,
     baseValueFraction: number,
-    config: boolean
+    config: boolean,
+    payout: PayoutData
+}
+
+export interface PayoutData {
+    active: boolean,
+    selectedCompany: number | null,
+    preview: boolean
 }
 
 export interface Transaction {
@@ -22,7 +29,8 @@ export interface Account {
     id: number,
     name: string,
     balance: number,
-    type: AccountType
+    type: AccountType,
+    shares: Record<number, number>
 }
 
 export interface DragData {

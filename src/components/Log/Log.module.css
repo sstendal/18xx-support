@@ -1,13 +1,5 @@
 .logButton {
-    border: 2px solid white;
-    border-radius: 2rem;
-    color: white;
-    padding: 1rem 2rem;
-    font-size: 2.4rem;
-    cursor: pointer;
-    background-color: #104547;
     margin-left: 2rem;
-    filter: drop-shadow(0 0 10px #0c1719);
 }
 
 /* Overlay/Backdrop */
@@ -34,30 +26,46 @@
 /* Slide-out Panel */
 .slidePanel {
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
     width: 500px;
     max-width: 90vw;
     background-color: #104547;
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
-    border-left: 2px solid #2e2e2e;
+    border: 3px solid;
+    border-color: #8B6F47 #3D2817 #3D2817 #8B6F47;
+    border-radius: 0.8rem;
+    filter: drop-shadow(0 0 10px #0c1719);
     z-index: 1000;
-    transform: translateX(100%);
+    transform: translateX(calc(100% + 1rem));
     transition: transform 0.3s ease-in-out;
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
+}
+
+.innerBorder {
+    border: 3px solid;
+    border-radius: 0.8rem;
+    border-color: #3D2817 #8B6F47 #8B6F47 #3D2817;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .slidePanel.open {
     transform: translateX(0);
 }
 
+.header {
+    text-transform: uppercase;
+}
+
 .content {
+    border-radius: 0.6rem;
     padding: 2rem;
     flex: 1;
-    overflow-y: hidden;
+    overflow-y: auto;
     color: white;
     display: flex;
     flex-direction: column;
@@ -79,7 +87,6 @@
     align-items: flex-start;
     padding: 0.5rem;
     margin: -0.5rem;
-    border-radius: 0.5rem;
     transition: background-color 0.2s ease;
 }
 
@@ -98,17 +105,8 @@
 }
 
 .value {
-    text-align: left;
-}
-
-.closeButton {
-    border: 2px solid white;
-    border-radius: 1rem;
-    color: white;
-    padding: 1rem 2rem;
-    font-size: 2rem;
-    cursor: pointer;
-    background-color: #104547;
+    text-align: right;
+    width: 10rem;
 }
 
 .buttonRow {

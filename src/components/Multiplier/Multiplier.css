@@ -42,28 +42,35 @@
 
 .multiplier__number {
     font-size: 3.6rem;
+    height: 3.6rem;
+    letter-spacing: -0.03em;
 }
 
 .multiplier__number--small {
     font-size: 3.2rem;
+    height: 3.2rem;
 }
 
 .multiplier__number--very-small {
     font-size: 2.4rem;
+    height: 2.4rem;
 }
 
 @media screen and (min-width: 1600px) {
 
     .multiplier__number {
         font-size: 4.8rem;
+        height: 4.8rem;
     }
 
     .multiplier__number--small {
         font-size: 4.2rem;
+        height: 4.2rem;
     }
 
     .multiplier__number--very-small {
         font-size: 3.2rem;
+        height: 3.2rem;
     }
 
     .multiplier__selector {

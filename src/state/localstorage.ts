@@ -1,4 +1,5 @@
 import {RootState, SavedState} from './types'
+import {TOTAL_SHARES_PER_COMPANY} from './preloadedState'
 
 
 export function loadState(): SavedState | undefined {
@@ -36,12 +37,33 @@ export function saveState(state: RootState) {
 function migrated(state: SavedState): SavedState {
     if (state.accounts) {
         let counter = 1;
+        const companyIds: number[] = []
+
         state.accounts.forEach(account => {
             if (account.id === undefined) {
                 if (account.name === 'Bank') {
                     account.id = 0
                 } else {
                     account.id = counter++
+                }
+            }
+            if (account.type === 'company') {
+                companyIds.push(account.id)
+            }
+        })
+
+        // Migrate accounts without shares property
+        state.accounts.forEach(account => {
+            if (account.shares === undefined) {
+                if (account.type === 'bank') {
+                    // Bank gets all shares for all companies
+                    account.shares = {}
+                    companyIds.forEach(companyId => {
+                        account.shares[companyId] = TOTAL_SHARES_PER_COMPANY
+                    })
+                } else {
+                    // Players and companies start with no shares
+                    account.shares = {}
                 }
             }
         })

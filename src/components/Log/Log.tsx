@@ -3,6 +3,7 @@ import styles from './Log.module.css'
 import {useDispatch} from 'react-redux'
 import {resetLog} from '../../state/actions'
 import {useSelector} from '../../state/useSelector'
+import Button from '../Button/Button'
 
 export default function Log() {
 
@@ -54,7 +55,7 @@ export default function Log() {
     let logElements = transactions.map((transaction, index) => (
         <div key={index} className={styles.logEntry}>
             <div className={styles.time}>{transaction.time}</div>
-            <div className={styles.text}>From {accountName(transaction.from)} to {accountName(transaction.to)}</div>
+            <div className={styles.text}>{accountName(transaction.from)} → {accountName(transaction.to)}</div>
             <div className={styles.value}>${transaction.value}</div>
         </div>
     ))
@@ -62,7 +63,7 @@ export default function Log() {
 
     return (
         <>
-            <button className={styles.logButton} onClick={togglePanel}>Log</button>
+            <Button className={styles.logButton} onClick={togglePanel}>Log</Button>
 
             {/* Backdrop/Overlay */}
             {open && <div className={styles.overlay} onClick={togglePanel} />}
@@ -84,19 +85,21 @@ export default function Log() {
 
             {/* Slide-out Panel */}
             <div className={`${styles.slidePanel} ${open ? styles.open : ''}`}>
-                <div className={styles.content}>
-                    <h2>Log</h2>
-                    <p>All transactions since the game was started</p>
-                    <div className={styles.list}>
-                        {logElements}
-                        {noTransactionsMsg}
+                <div className={styles.innerBorder}>
+                    <div className={styles.content}>
+                        <h2 className={styles.header}>Log</h2>
+                        <p>All transactions since the game was started</p>
+                        <div className={styles.list}>
+                            {logElements}
+                            {noTransactionsMsg}
+                        </div>
                     </div>
-                </div>
-                <div className={styles.buttonRow}>
-                    <button className={styles.closeButton} onClick={onReset}
-                            disabled={transactions.length === 0}>Reset log
-                    </button>
-                    <button className={styles.closeButton} onClick={togglePanel}>Close</button>
+                    <div className={styles.buttonRow}>
+                        <Button onClick={onReset}
+                                disabled={transactions.length === 0}>Reset log
+                        </Button>
+                        <Button onClick={togglePanel}>Close</Button>
+                    </div>
                 </div>
             </div>
         </>

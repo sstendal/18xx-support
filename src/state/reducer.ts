@@ -17,9 +17,15 @@ import {
     startConfig,
     startDrag,
     stopConfig,
-    stopDrag
+    stopDrag,
+    startPayout,
+    stopPayout,
+    selectPayoutCompany,
+    startPayoutPreview,
+    stopPayoutPreview,
+    transferShare
 } from './actions'
-import {Account, DragData, Transaction} from './types'
+import {Account, DragData, PayoutData, Transaction} from './types'
 
 
 const accounts = createReducer([] as Account[], {
@@ -41,7 +47,22 @@ const accounts = createReducer([] as Account[], {
     },
     [addAccount as any]: (state: Account[], action) => {
         const nextId = state[state.length - 1].id + 1
-        state.push({id: nextId, name: '<name>', balance: 0, type: action.payload.type})
+        state.push({id: nextId, name: '<name>', balance: 0, type: action.payload.type, shares: {}})
+    },
+    [transferShare as any]: (state: Account[], action) => {
+        const fromAccount = state.find(account => account.id === action.payload.from)
+        const toAccount = state.find(account => account.id === action.payload.to)
+        const companyId = action.payload.companyId
+        const count = action.payload.count
+
+        // Decrement from source account
+        fromAccount.shares[companyId] = (fromAccount.shares[companyId] || 0) - count
+        if (fromAccount.shares[companyId] <= 0) {
+            delete fromAccount.shares[companyId]
+        }
+
+        // Increment to target account
+        toAccount.shares[companyId] = (toAccount.shares[companyId] || 0) + count
     }
 })
 
@@ -89,6 +110,14 @@ const config = createReducer(false, {
     [stopConfig as any]: (state: boolean, action) => false
 })
 
+const payout = createReducer({active: false, selectedCompany: null, preview: false} as PayoutData, {
+    [startPayout as any]: (state: PayoutData) => ({...state, active: true}),
+    [stopPayout as any]: (state: PayoutData) => ({active: false, selectedCompany: null, preview: false}),
+    [selectPayoutCompany as any]: (state: PayoutData, action) => ({...state, selectedCompany: action.payload}),
+    [startPayoutPreview as any]: (state: PayoutData) => ({...state, preview: true}),
+    [stopPayoutPreview as any]: (state: PayoutData) => ({...state, preview: false})
+})
+
 const reducer = {
     accounts,
     drag,
@@ -96,7 +125,8 @@ const reducer = {
     multiplier,
     baseValue,
     baseValueFraction,
-    config
+    config,
+    payout
 }
 
 export default reducer

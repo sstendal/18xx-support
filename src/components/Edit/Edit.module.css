@@ -1,13 +1,5 @@
 .configButton {
-    border: 2px solid white;
-    border-radius: 2rem;
-    color: white;
-    padding: 1rem 2rem;
-    font-size: 2.4rem;
-    cursor: pointer;
-    background-color: #104547;
     margin-left: 2rem;
-    filter: drop-shadow(0 0 10px #0c1719);
 }
 
 .buttonRow {
@@ -16,13 +8,23 @@
 
 .done {
     width: 40rem;
-    height: 20rem;
-    background-color: #104547;
-    border: 4px solid white;
-    border-top-left-radius: 1.8rem;
+    background-color: #0c1719;
+    border: 3px solid;
+    border-color: #8B6F47 #3D2817 #3D2817 #8B6F47;
+    border-radius: 0.8rem;
+    box-shadow: inset -2px -2px 0 0 #8B6F47, inset 1px 1px 0 0 #3D2817;
+    filter: drop-shadow(0 0 10px #0c1719);
     position: fixed;
-    right: 0;
-    bottom: 0;
+    right: 1rem;
+    bottom: 1rem;
     z-index: 2;
+    padding: 2rem;
+    font-variant: none;
+    font-size: 2.0rem;
+}
+
+.header {
+    padding-top: 1rem;
+    margin: 0;
 }
 

@@ -1,4 +1,4 @@
-import {accountAdjust, addTransaction, setBaseValue, setMultiplier} from '../state/actions'
+import {accountAdjust, addTransaction, setBaseValue, setMultiplier, stopPayout} from '../state/actions'
 import moment from 'moment'
 import typedNumber from './typedNumber'
 
@@ -9,6 +9,24 @@ export const transfer = (from, to, value) => dispatch => {
     dispatch(accountAdjust({id: from, value: -value}))
     dispatch(accountAdjust({id: to, value: value}))
     dispatch(addTransaction({from, to, value, time: moment().format('HH:mm:ss')}))
+}
+
+export const makePayout = (companyId, baseValue, multiplier) => (dispatch, getState) => {
+    const state = getState()
+    const accounts = state.accounts
+    const bankId = 0
+    const payoutPerShare = baseValue * multiplier
+
+    // Pay out to all accounts except the bank
+    accounts.forEach(account => {
+        if (account.id === bankId) return  // Skip bank
+
+        const shares = account.shares[companyId] || 0
+        if (shares > 0) {
+            const payoutAmount = shares * payoutPerShare
+            dispatch(transfer(bankId, account.id, payoutAmount))
+        }
+    })
 }
 
 export function listenToKeyEvents() {

@@ -11,6 +11,7 @@ export const accountSet = createAction<{id: number, value: number}>('accounts/se
 export const setAccountName = createAction<{id: number, name: string}>('accounts/setName')
 export const deleteAccount = createAction<{id: number}>('accounts/delete')
 export const addAccount = createAction<{type: AccountType}>('accounts/add')
+export const transferShare = createAction<{from: number, to: number, companyId: number, count: number}>('accounts/transferShare')
 
 export const addTransaction = createAction<Transaction>('transactions/add')
 export const resetLog = createAction('transactions/reset')
@@ -25,4 +26,10 @@ export const setBaseValueFraction = createAction('baseValueFraction/set')
 
 export const startConfig = createAction('config/start')
 export const stopConfig = createAction('config/stop')
+
+export const startPayout = createAction('payout/start')
+export const stopPayout = createAction('payout/stop')
+export const selectPayoutCompany = createAction<number>('payout/selectCompany')
+export const startPayoutPreview = createAction('payout/startPreview')
+export const stopPayoutPreview = createAction('payout/stopPreview')
 
