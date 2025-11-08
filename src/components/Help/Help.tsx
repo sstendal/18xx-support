@@ -1,25 +1,37 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styles from './Help.module.css'
-import Modal from 'react-modal'
 
 export default function Help() {
 
     const [open, setOpen] = useState(false)
 
-    function toggleModal() {
+    function togglePanel() {
         setOpen(!open)
     }
 
+    // Handle ESC key to close panel
+    useEffect(() => {
+        function handleKeyDown(e: KeyboardEvent) {
+            if (e.key === 'Escape' && open) {
+                setOpen(false)
+            }
+        }
+        document.addEventListener('keydown', handleKeyDown)
+        return () => document.removeEventListener('keydown', handleKeyDown)
+    }, [open])
+
     return (
         <>
-            <button className={styles.configButton} onClick={toggleModal}>Help</button>
-            <Modal
-                isOpen={open}
-                onRequestClose={toggleModal}
-                contentLabel="Help"
-            >
-                <h2>Help</h2>
-                <div className={styles.list}>
+            <button className={styles.configButton} onClick={togglePanel}>Help</button>
+
+            {/* Backdrop/Overlay */}
+            {open && <div className={styles.overlay} onClick={togglePanel} />}
+
+            {/* Slide-out Panel */}
+            <div className={`${styles.slidePanel} ${open ? styles.open : ''}`}>
+                <div className={styles.content}>
+                    <h2>Help</h2>
+                    <div className={styles.list}>
                     <h3>What is this?</h3>
                     <p>
                         18XX support was created as a companion app to the 18XX board games. All 18XX board games
@@ -50,9 +62,9 @@ export default function Help() {
                         <li>Select the circle with the correct amount by clicking on it.</li>
                         <li>Click and drag the money from the player to the company.</li>
                     </ul>
-                    <div className={styles.videoLink}>
-                        <a href={'video/18xx-support-demo.mp4'} target="_blank" rel="noreferrer">Demo</a>
-                    </div>
+                    <p>
+                        <a href={'video/18xx-support-demo.mp4'} target="_blank" rel="noreferrer" className={styles.videoLink}>Demo</a>
+                    </p>
 
                     <h3>The yellow circles and calculations</h3>
                     <p>
@@ -87,11 +99,12 @@ export default function Help() {
                         https://18xx-support.stendal.io is created an maintained by Sigurd Stendal. Bugs and problems
                         can be reported by sending an email to 18xx[at]stendal.io.
                     </p>
+                    </div>
                 </div>
                 <div className={styles.buttonRow}>
-                    <button className={styles.closeButton} onClick={toggleModal}>Close</button>
+                    <button className={styles.closeButton} onClick={togglePanel}>Close</button>
                 </div>
-            </Modal>
+            </div>
         </>
     )
 }

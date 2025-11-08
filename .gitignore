@@ -21,3 +21,6 @@ deno.lock
 
 # Sentry Config File
 .sentryclirc
+
+.claude
+.playwright-mcp

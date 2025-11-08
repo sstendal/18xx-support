@@ -10,52 +10,199 @@
     filter: drop-shadow(0 0 10px #0c1719);
 }
 
+/* Overlay/Backdrop */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Slide-out Panel */
+.slidePanel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 500px;
+    max-width: 90vw;
+    background-color: #104547;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
+    border-left: 2px solid #2e2e2e;
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.slidePanel.open {
+    transform: translateX(0);
+}
+
+.content {
+    padding: 2rem;
+    flex: 1;
+    overflow-y: hidden;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.content h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 3.4rem;
+    color: white;
+}
+
+.content p {
+    margin: 0 0 1rem 0;
+    color: white;
+}
+
 .logEntry {
     display: flex;
+    align-items: flex-start;
+    padding: 0.5rem;
+    margin: -0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.logEntry:hover {
+    background-color: white;
 }
 
 .time {
     width: 8rem;
+    text-align: left;
 }
 
 .text {
     width: 20rem;
+    text-align: left;
 }
 
 .value {
-    
+    text-align: left;
 }
 
 .closeButton {
     border: 2px solid white;
     border-radius: 1rem;
     color: white;
-    padding: 0.5rem 1rem;
-    font-size: 1.8rem;
+    padding: 1rem 2rem;
+    font-size: 2rem;
     cursor: pointer;
     background-color: #104547;
 }
 
 .buttonRow {
-    margin-top: 1rem;
+    padding: 2rem;
     display: flex;
     justify-content: flex-end;
+    gap: 1rem;
+    flex-shrink: 0;
 }
 
 .list {
-    max-height: 60vh;
+    flex: 1;
     overflow-y: auto;
-    border-top: 1px solid lightgrey;
-    border-bottom: 1px solid lightgrey;
     margin: 0 -2rem;
-    padding: 0 2rem;
-    min-height: 8rem;
+    padding: 2rem;
+    background-color: #cacaca;
+    color: black;
 }
 
 .emptyText {
     font-size: 2.6rem;
-    color: lightgrey;
+    color: #777777;
     width: 100%;
     text-align: center;
     margin-top: 2rem;
+}
+
+/* Confirm Dialog */
+.confirmOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1001;
+}
+
+.confirmDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1002;
+    min-width: 400px;
+    max-width: 90vw;
+}
+
+.confirmDialog h3 {
+    margin: 0 0 1rem 0;
+    font-size: 2.4rem;
+    color: #104547;
+}
+
+.confirmDialog p {
+    margin: 0 0 2rem 0;
+    font-size: 1.6rem;
+    color: #333;
+}
+
+.confirmButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.cancelButton,
+.confirmButton {
+    border: 2px solid #104547;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancelButton {
+    background-color: white;
+    color: #104547;
+}
+
+.cancelButton:hover {
+    background-color: #f0f0f0;
+}
+
+.confirmButton {
+    background-color: #104547;
+    color: white;
+}
+
+.confirmButton:hover {
+    background-color: #0d3638;
 }
