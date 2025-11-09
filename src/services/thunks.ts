@@ -1,4 +1,4 @@
-import {accountAdjust, addTransaction, setBaseValue, setMultiplier, stopPayout} from '../state/actions'
+import {accountAdjust, addTransaction, setBaseValue, setMultiplier} from '../state/actions'
 import moment from 'moment'
 import typedNumber from './typedNumber'
 

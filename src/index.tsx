@@ -7,7 +7,6 @@ import store from './state/store'
 import {listenToKeyEvents} from './services/thunks'
 import Modal from 'react-modal'
 import * as Sentry from "@sentry/react";
-import { BrowserTracing } from "@sentry/tracing";
 
 // Overriding react-modal styles
 Modal.setAppElement('#root')

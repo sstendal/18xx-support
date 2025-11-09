@@ -4,7 +4,6 @@ import {useDispatch} from 'react-redux'
 import {startConfig, stopConfig} from '../../state/actions'
 import {useSelector} from '../../state/useSelector'
 import Button from '../Button/Button'
-import classNames from '*.css'
 
 export default function Edit() {
 
