@@ -13,6 +13,7 @@ export default function Payout() {
     const preview = useSelector(state => state.payout.preview)
     const baseValue = useSelector(state => state.baseValue)
     const multiplier = useSelector(state => state.multiplier)
+    const bankShares = useSelector(state => state.accounts[0].shares[selectedCompany])
 
     function onStart() {
         dispatch(startPayout())
@@ -39,8 +40,10 @@ export default function Payout() {
         }
     }
 
-    const showMakePayoutButton = payoutActive && selectedCompany !== null && !preview
+    const showMakePayoutButton = payoutActive && selectedCompany !== null && bankShares < 10 && !preview
     const showConfirmButton = payoutActive && selectedCompany !== null && preview
+    const showInstruction = payoutActive && selectedCompany === null && !preview
+    const showShareInstruction = payoutActive && selectedCompany !== null && bankShares === 10 && !preview
 
     return (
         <>
@@ -50,8 +53,14 @@ export default function Payout() {
             {payoutActive && (
                 <Button className={styles.payoutButton} onClick={onStop}>Done</Button>
             )}
+            {showInstruction && (
+                <div className={styles.instruction}>Select a company</div>
+            )}
+            {showShareInstruction && (
+                <div className={styles.instruction}>Distribute the shares</div>
+            )}
             {showMakePayoutButton && (
-                <Button className={styles.makePayoutButton} onClick={onShowPreview}>Make payout</Button>
+                <Button className={styles.makePayoutButton} onClick={onShowPreview}>Make payout of ${baseValue * multiplier} pr. share</Button>
             )}
             {showConfirmButton && (
                 <div className={styles.confirmButtons}>

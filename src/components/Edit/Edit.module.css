@@ -8,7 +8,8 @@
 
 .done {
     width: 40rem;
-    background-color: #0c1719;
+    color: black;
+    background-color: #C4A381;
     border: 3px solid;
     border-color: #8B6F47 #3D2817 #3D2817 #8B6F47;
     border-radius: 0.8rem;
@@ -18,13 +19,16 @@
     right: 1rem;
     bottom: 1rem;
     z-index: 2;
-    padding: 2rem;
+    padding: 0 0 2rem 0;
     font-variant: none;
     font-size: 2.0rem;
+    font-weight: 600;
 }
 
 .header {
-    padding-top: 1rem;
+    color: white;
+    background-color: #002220;
+    padding: 2rem 1rem  1rem    1rem ;
     margin: 0;
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import AccountName from './AccountName'
 import DeleteIcon from '../../widgets/DeleteIcon'
 import styles from './Account.module.css'
@@ -15,6 +15,18 @@ export default function Account({id}: { id: number }) {
     const account = useSelector(state => state.accounts.find(account => account.id === id))
     const drag = useSelector(state => state.drag)
     const payout = useSelector(state => state.payout)
+
+    const [showPayoutAnimation, setShowPayoutAnimation] = useState(false)
+    const prevBalance = useRef(account.balance)
+
+    useEffect(() => {
+        if (account.balance > prevBalance.current) {
+            setShowPayoutAnimation(true)
+            const timer = setTimeout(() => setShowPayoutAnimation(false), 1200)
+            return () => clearTimeout(timer)
+        }
+        prevBalance.current = account.balance
+    }, [account.balance])
 
     function onDelete() {
         if (account.balance !== 0) {
@@ -40,7 +52,7 @@ export default function Account({id}: { id: number }) {
 
     return (
         <div
-            className={classNames(styles.body, payoutDimmed && styles.payoutDimmed, payoutSelected && styles.payoutSelected)}
+            className={classNames(styles.body, payoutDimmed && styles.payoutDimmed, payoutSelected && styles.payoutSelected, showPayoutAnimation && styles.shine)}
             onClick={onPayoutClick}
         >
             <div className={classNames(styles.innerBorder)}>
@@ -50,6 +62,7 @@ export default function Account({id}: { id: number }) {
                     styles.balance,
                     selected && styles.balanceSelected,
                     payoutSelected && styles.payoutSelected
+
                 )}>
                     <AccountValue id={account.id}/>
                 </div>

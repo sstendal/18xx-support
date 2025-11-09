@@ -7,6 +7,7 @@
     border: 3px solid;
     border-color: #8B6F47 #3D2817 #3D2817 #8B6F47;
     border-radius: 0.8rem;
+    overflow: hidden;
 }
 
 .innerBorder {
@@ -103,7 +104,7 @@
 
 .payoutDimmed:hover {
     cursor: pointer;
-    filter: grayscale(100%) opacity(0.7);
+    filter: none;
 }
 
 .payoutDimmed:hover .name {
@@ -142,3 +143,31 @@ input.editingFontSize {
     }
 }
 
+@keyframes payoutPulse {
+    0%   { transform: scale(1); box-shadow: 0 0 0 rgba(255, 215, 0, 0); }
+    30%  { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+    100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 215, 0, 0); }
+}
+
+.payout {
+    animation: payoutPulse 1.2s ease-out;
+}
+
+.body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: skewX(-25deg);
+}
+
+@keyframes shine {
+    100% { left: 125%; }
+}
+
+.body.shine::before {
+    animation: shine 0.8s ease-in-out;
+}
