@@ -67,6 +67,19 @@ function migrated(state: SavedState): SavedState {
                 }
             }
         })
+
+        // Clean up orphaned share references (shares for companies that no longer exist)
+        state.accounts.forEach(account => {
+            if (account.shares) {
+                Object.keys(account.shares).forEach(shareCompanyId => {
+                    const companyIdNum = parseInt(shareCompanyId)
+                    if (!companyIds.includes(companyIdNum)) {
+                        // This company no longer exists, remove the orphaned share reference
+                        delete account.shares[companyIdNum]
+                    }
+                })
+            }
+        })
     }
     return state
 }

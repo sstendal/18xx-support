@@ -42,7 +42,19 @@ const accounts = createReducer([] as Account[], {
         account.name = action.payload.name
     },
     [deleteAccount as any]: (state: Account[], action) => {
-        let index = state.findIndex(account => account.id === action.payload.id)
+        const accountToDelete = state.find(account => account.id === action.payload.id)
+        const index = state.findIndex(account => account.id === action.payload.id)
+
+        // If deleting a company, clean up all share references to it
+        if (accountToDelete?.type === 'company') {
+            const companyId = accountToDelete.id
+            state.forEach(account => {
+                if (account.shares[companyId] !== undefined) {
+                    delete account.shares[companyId]
+                }
+            })
+        }
+
         state.splice(index, 1)
     },
     [addAccount as any]: (state: Account[], action) => {

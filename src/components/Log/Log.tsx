@@ -48,8 +48,9 @@ export default function Log() {
 
     transactions.reverse()
 
-    function accountName(accountIndex: number) {
-        return accounts[accountIndex]?.name || ('#' + accountIndex)
+    function accountName(accountId: number) {
+        const account = accounts.find(account => account.id === accountId)
+        return account?.name || ('#' + accountId)
     }
 
     let logElements = transactions.map((transaction, index) => (
