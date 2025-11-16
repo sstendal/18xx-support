@@ -1,6 +1,12 @@
+export interface CompanyPayoutValues {
+    multiplier: number,
+    baseValue: number
+}
+
 export interface SavedState {
     accounts: Account[],
-    transactions: Transaction[]
+    transactions: Transaction[],
+    companyPayoutHistory: Record<number, CompanyPayoutValues>
 }
 
 export interface RootState extends SavedState {

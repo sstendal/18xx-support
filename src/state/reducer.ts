@@ -23,9 +23,10 @@ import {
     selectPayoutCompany,
     startPayoutPreview,
     stopPayoutPreview,
-    transferShare
+    transferShare,
+    saveCompanyPayoutValues
 } from './actions'
-import {Account, DragData, PayoutData, Transaction} from './types'
+import {Account, CompanyPayoutValues, DragData, PayoutData, Transaction} from './types'
 
 
 const accounts = createReducer([] as Account[], {
@@ -130,6 +131,20 @@ const payout = createReducer({active: false, selectedCompany: null, preview: fal
     [stopPayoutPreview as any]: (state: PayoutData) => ({...state, preview: false})
 })
 
+const companyPayoutHistory = createReducer({} as Record<number, CompanyPayoutValues>, {
+    [saveCompanyPayoutValues as any]: (state: Record<number, CompanyPayoutValues>, action) => {
+        state[action.payload.companyId] = {
+            multiplier: action.payload.multiplier,
+            baseValue: action.payload.baseValue
+        }
+    },
+    [deleteAccount as any]: (state: Record<number, CompanyPayoutValues>, action) => {
+        if (state[action.payload.id]) {
+            delete state[action.payload.id]
+        }
+    }
+})
+
 const reducer = {
     accounts,
     drag,
@@ -138,7 +153,8 @@ const reducer = {
     baseValue,
     baseValueFraction,
     config,
-    payout
+    payout,
+    companyPayoutHistory
 }
 
 export default reducer

@@ -1,8 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
-import * as actions from '../../state/actions'
-import {useDispatch} from 'react-redux'
-import {useSelector} from '../../state/useSelector'
+import {useDispatch, useSelector} from '../../state/useSelector'
+import {setMultiplierAndSave} from '../../services/thunks'
 
 export default function MultiplierSelector({isSelected, factor}: {isSelected: boolean, factor: number}) {
 
@@ -10,7 +9,7 @@ export default function MultiplierSelector({isSelected, factor}: {isSelected: bo
     const baseValue = useSelector(state => state.baseValue)
 
     function setMultiplier(value) {
-        dispatch(actions.setMultiplier(value))
+        dispatch(setMultiplierAndSave(value))
     }
 
     return (

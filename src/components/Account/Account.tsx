@@ -3,10 +3,10 @@ import AccountName from './AccountName'
 import DeleteIcon from '../../widgets/DeleteIcon'
 import styles from './Account.module.css'
 import classNames from 'classnames'
-import {deleteAccount, selectPayoutCompany} from '../../state/actions'
-import {useDispatch} from 'react-redux'
+import {deleteAccount} from '../../state/actions'
 import AccountValue from './AccountValue'
-import {useSelector} from '../../state/useSelector'
+import {useDispatch, useSelector} from '../../state/useSelector'
+import {selectPayoutCompanyAndRestore} from '../../services/thunks'
 
 export default function Account({id}: { id: number }) {
 
@@ -38,7 +38,7 @@ export default function Account({id}: { id: number }) {
 
     function onPayoutClick() {
         if (payout.active && account.type === 'company') {
-            dispatch(selectPayoutCompany(account.id))
+            dispatch(selectPayoutCompanyAndRestore(account.id))
         }
     }
 

@@ -12,7 +12,8 @@ export function loadState(): SavedState | undefined {
         const parse = JSON.parse(serializedState) as SavedState
         const savedState: SavedState = {
             accounts: parse.accounts,
-            transactions: parse.transactions
+            transactions: parse.transactions,
+            companyPayoutHistory: parse.companyPayoutHistory || {}
         }
         return migrated(savedState)
     } catch (e) {
@@ -25,7 +26,8 @@ export function saveState(state: RootState) {
     try {
         const savedState: SavedState = {
             accounts: state.accounts,
-            transactions: state.transactions
+            transactions: state.transactions,
+            companyPayoutHistory: state.companyPayoutHistory
         }
         const serializedState = JSON.stringify(savedState)
         localStorage.setItem('state', serializedState)

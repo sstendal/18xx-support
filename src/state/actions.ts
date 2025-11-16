@@ -32,4 +32,5 @@ export const stopPayout = createAction('payout/stop')
 export const selectPayoutCompany = createAction<number>('payout/selectCompany')
 export const startPayoutPreview = createAction('payout/startPreview')
 export const stopPayoutPreview = createAction('payout/stopPreview')
+export const saveCompanyPayoutValues = createAction<{companyId: number, multiplier: number, baseValue: number}>('payout/saveCompanyValues')
 

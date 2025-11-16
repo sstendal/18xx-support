@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from 'react'
 
-export default function useRepeatClick(pressed: boolean, callback: () => {}) {
+export default function useRepeatClick(pressed: boolean, callback: () => void) {
 
     const INITIAL_INTERVAL = 200
     const MEDIUM_SPEED_INTERVAL = 100

@@ -127,14 +127,17 @@ const preloadedState: RootState = {
         active: false,
         selectedCompany: null,
         preview: false
-    }
+    },
+
+    companyPayoutHistory: {}
 
 }
 
 const extendSavedState = (savedState: SavedState = {} as SavedState): RootState => {
     return {
         ...preloadedState,
-        ...savedState
+        ...savedState,
+        companyPayoutHistory: savedState.companyPayoutHistory || {}
     }
 }
 
