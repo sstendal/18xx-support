@@ -117,9 +117,21 @@ export function listenToKeyEvents() {
         window.addEventListener('keydown', function (e) {
             console.log('Keydown', e.key, e.shiftKey)
 
+            // Ignore keyboard events when typing in input fields or in edit mode
+            const state = getState()
+            const activeElement = document.activeElement
+            const isTypingInInput = activeElement && (
+                activeElement.tagName === 'INPUT' ||
+                activeElement.tagName === 'TEXTAREA' ||
+                (activeElement as HTMLElement).isContentEditable
+            )
+
+            if (isTypingInInput || state.config) {
+                return
+            }
+
             // Arrow keys change the selected multiplier
             if (e.key === 'ArrowRight') {
-                const state = getState()
                 const currentMultiplier = state.multiplier
                 const newMultiplier = Math.min(currentMultiplier + 1, 10)
                 if (currentMultiplier !== newMultiplier) {
@@ -135,7 +147,6 @@ export function listenToKeyEvents() {
                 }
             }
             if (e.key === 'ArrowLeft') {
-                const state = getState()
                 const currentMultiplier = state.multiplier
                 const newMultiplier = Math.max(currentMultiplier - 1, 1)
                 if (currentMultiplier !== newMultiplier) {
@@ -153,7 +164,6 @@ export function listenToKeyEvents() {
 
             // Digits change the base value
             if (DIGITS.includes(e.key)) {
-                const state = getState()
                 const newBaseValue = typedNumber(e.key)
                 dispatch(setBaseValue(newBaseValue))
                 // Save values if in payout mode
@@ -167,7 +177,6 @@ export function listenToKeyEvents() {
             }
 
             if (e.key === 'Backspace' || e.key === 'Delete') {
-                const state = getState()
                 dispatch(setBaseValue(1))
                 // Save values if in payout mode
                 if (state.payout.active && state.payout.selectedCompany !== null) {
