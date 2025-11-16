@@ -104,6 +104,21 @@ export default function Help() {
                                 paper
                                 money in a board game.
                             </p>
+                            <h3>Payout mode</h3>
+                            <p>
+                                The Payout button starts a payout mode where you can easily make a payout from a company to all shareholders.
+                            </p>
+                            <ul>
+                                <li>Press the Payout button</li>
+                                <li>Click on the company that should make a payout</li>
+                                <li>Distribute the shares to the players so that it matches the actual ownership</li>
+                                <li>Select the amount pr. share</li>
+                                <li>Press "Payout"</li>
+                            </ul>
+                            <p>
+                                The app remembers both share distribution and the last payout from each company to make it easier to repeat the same payout in the next operating round.
+                            </p>
+
                             <h3>Configuration</h3>
                             <p>
                                 Press the Edit button to start configuration of a new game. Players can be added or
