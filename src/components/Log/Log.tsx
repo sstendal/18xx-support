@@ -56,8 +56,6 @@ export default function Log() {
     function renderTransaction(transaction, index) {
         if (transaction.type === 'payout') {
             const companyName = accountName(transaction.companyId)
-            const totalShares = transaction.transfers.reduce((sum, t) => sum + t.shares, 0)
-            const payoutPerShare = transaction.baseValue * transaction.multiplier
 
             return (
                 <div key={index} className={styles.payoutGroup}>
