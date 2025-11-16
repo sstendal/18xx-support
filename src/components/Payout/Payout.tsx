@@ -40,7 +40,7 @@ export default function Payout() {
         }
     }
 
-    const showMakePayoutButton = payoutActive && selectedCompany !== null && bankShares < 10 && !preview
+    const showMakePayoutButton = payoutActive && selectedCompany !== null && (!bankShares || bankShares < 10) && !preview
     const showConfirmButton = payoutActive && selectedCompany !== null && preview
     const showInstruction = payoutActive && selectedCompany === null && !preview
     const showShareInstruction = payoutActive && selectedCompany !== null && bankShares === 10 && !preview
