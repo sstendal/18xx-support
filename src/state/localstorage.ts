@@ -83,6 +83,26 @@ function migrated(state: SavedState): SavedState {
             }
         })
     }
+
+    // Migrate transactions to new format with type discriminator
+    if (state.transactions) {
+        state.transactions = state.transactions.map(transaction => {
+            // If transaction doesn't have a type field, it's an old format transaction
+            if (!(transaction as any).type) {
+                // Convert old format to ManualTransaction
+                return {
+                    type: 'manual',
+                    from: (transaction as any).from,
+                    to: (transaction as any).to,
+                    value: (transaction as any).value,
+                    time: (transaction as any).time
+                }
+            }
+            // Already migrated
+            return transaction
+        })
+    }
+
     return state
 }
 

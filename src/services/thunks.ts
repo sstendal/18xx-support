@@ -8,7 +8,13 @@ export const transfer = (from, to, value) => dispatch => {
     if (from === to) return
     dispatch(accountAdjust({id: from, value: -value}))
     dispatch(accountAdjust({id: to, value: value}))
-    dispatch(addTransaction({from, to, value, time: moment().format('HH:mm:ss')}))
+    dispatch(addTransaction({
+        type: 'manual',
+        from,
+        to,
+        value,
+        time: moment().format('HH:mm:ss')
+    }))
 }
 
 export const selectPayoutCompanyAndRestore = (companyId) => (dispatch, getState) => {
@@ -61,6 +67,7 @@ export const makePayout = (companyId, baseValue, multiplier) => (dispatch, getSt
     const accounts = state.accounts
     const bankId = 0
     const payoutPerShare = baseValue * multiplier
+    const transfers = []
 
     // Save the payout values for this company
     dispatch(saveCompanyPayoutValues({
@@ -76,9 +83,31 @@ export const makePayout = (companyId, baseValue, multiplier) => (dispatch, getSt
         const shares = account.shares[companyId] || 0
         if (shares > 0) {
             const payoutAmount = shares * payoutPerShare
-            dispatch(transfer(bankId, account.id, payoutAmount))
+
+            // Adjust account balances
+            dispatch(accountAdjust({id: bankId, value: -payoutAmount}))
+            dispatch(accountAdjust({id: account.id, value: payoutAmount}))
+
+            // Collect transfer data
+            transfers.push({
+                toAccountId: account.id,
+                amount: payoutAmount,
+                shares: shares
+            })
         }
     })
+
+    // Create a single payout transaction
+    if (transfers.length > 0) {
+        dispatch(addTransaction({
+            type: 'payout',
+            time: moment().format('HH:mm:ss'),
+            companyId: companyId,
+            baseValue: baseValue,
+            multiplier: multiplier,
+            transfers: transfers
+        }))
+    }
 }
 
 export function listenToKeyEvents() {

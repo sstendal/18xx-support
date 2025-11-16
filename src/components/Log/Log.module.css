@@ -204,3 +204,36 @@
 .confirmButton:hover {
     background-color: #0d3638;
 }
+
+/* Payout Group Styles */
+.payoutGroup {
+    margin: 0 -2rem ;
+    padding: 0.5rem 2rem;
+}
+
+.payoutHeader {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.payoutTransfer {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.5rem;
+    margin: -0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.payoutTransferDetails {
+    display:none
+}
+
+.payoutTransfer:hover .payoutTransferDetails {
+    display:inline
+}
+
+.payoutTransfer:hover {
+    background-color: white;
+}

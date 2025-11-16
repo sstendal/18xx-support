@@ -53,13 +53,44 @@ export default function Log() {
         return account?.name || ('#' + accountId)
     }
 
-    let logElements = transactions.map((transaction, index) => (
-        <div key={index} className={styles.logEntry}>
-            <div className={styles.time}>{transaction.time}</div>
-            <div className={styles.text}>{accountName(transaction.from)} → {accountName(transaction.to)}</div>
-            <div className={styles.value}>${transaction.value}</div>
-        </div>
-    ))
+    function renderTransaction(transaction, index) {
+        if (transaction.type === 'payout') {
+            const companyName = accountName(transaction.companyId)
+            const totalShares = transaction.transfers.reduce((sum, t) => sum + t.shares, 0)
+            const payoutPerShare = transaction.baseValue * transaction.multiplier
+
+            return (
+                <div key={index} className={styles.payoutGroup}>
+                    <div className={styles.payoutHeader}>
+                        <div className={styles.time}>{transaction.time}</div>
+                        <div className={styles.text}>
+                            Payout: {companyName}
+                        </div>
+                    </div>
+                    {transaction.transfers.map((transfer, tIndex) => (
+                        <div key={`${index}-${tIndex}`} className={styles.payoutTransfer}>
+                            <div className={styles.time}></div>
+                            <div className={styles.text}>
+                                → {accountName(transfer.toAccountId)}  <span className={styles.payoutTransferDetails}>({transfer.shares} {transfer.shares === 1 ? 'share' : 'shares'})</span>
+                            </div>
+                            <div className={styles.value}>${transfer.amount}</div>
+                        </div>
+                    ))}
+                </div>
+            )
+        } else {
+            // Manual transaction
+            return (
+                <div key={index} className={styles.logEntry}>
+                    <div className={styles.time}>{transaction.time}</div>
+                    <div className={styles.text}>{accountName(transaction.from)} → {accountName(transaction.to)}</div>
+                    <div className={styles.value}>${transaction.value}</div>
+                </div>
+            )
+        }
+    }
+
+    let logElements = transactions.map(renderTransaction)
     const noTransactionsMsg = (logElements.length === 0) && <div className={styles.emptyText}>No transactions</div>
 
     return (

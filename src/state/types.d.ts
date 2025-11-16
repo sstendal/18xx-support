@@ -24,12 +24,30 @@ export interface PayoutData {
     preview: boolean
 }
 
-export interface Transaction {
+export interface PayoutTransfer {
+    toAccountId: number,
+    amount: number,
+    shares: number
+}
+
+export interface PayoutTransaction {
+    type: 'payout',
+    time: string,
+    companyId: number,
+    baseValue: number,
+    multiplier: number,
+    transfers: PayoutTransfer[]
+}
+
+export interface ManualTransaction {
+    type: 'manual',
     from: number,
     to: number,
     value: number,
     time: string
 }
+
+export type Transaction = PayoutTransaction | ManualTransaction
 
 export interface Account {
     id: number,
